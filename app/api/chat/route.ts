@@ -44,7 +44,7 @@ export async function POST(req: Request) {
 
   // check if the conversation requires a function call to be made
   const initialResponse = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo-0613",
+    model: "'gpt-3.5-turbo-16k'",
     messages,
     functions,
     function_call: "auto",
@@ -59,7 +59,7 @@ export async function POST(req: Request) {
     const functionResponse = await runFunction(name, JSON.parse(args));
 
     finalResponse = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo-0613",
+      model: "'gpt-3.5-turbo-16k'",
       stream: true,
       messages: [
         ...messages,
